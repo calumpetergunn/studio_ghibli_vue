@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    
+    <p>Homepage!</p>
   </div>
 </template>
 
@@ -11,6 +11,19 @@ export default {
   name: 'App',
   components: {
     
+  },
+  data() {
+  return {
+    movies: [],
+    selectedMovie: null
+    };
+  },
+  async mounted() {
+    const res = await fetch('https://ghibliapi.herokuapp.com/films')
+    const data = await res.json()
+    this.movies = data
+    console.log(this.movies)
+
   }
 }
 </script>
