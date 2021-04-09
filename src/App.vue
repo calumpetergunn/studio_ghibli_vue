@@ -1,29 +1,33 @@
 <template>
   <div id="app">
     <p>Homepage!</p>
+    <film-list :films="films"/>
   </div>
 </template>
 
 <script>
 
+import FilmList from './components/FilmList.vue'
+import FilmListItem from './components/FilmListItem.vue'
 
 export default {
   name: 'App',
   components: {
-    
+    "film-list": FilmList,
+    "film-list-item": FilmListItem
   },
   data() {
   return {
-    movies: [],
+    films: [],
     selectedMovie: null
     };
   },
+
   async mounted() {
     const res = await fetch('https://ghibliapi.herokuapp.com/films')
     const data = await res.json()
-    this.movies = data
-    console.log(this.movies)
-
+    this.films = data
+    
   }
 }
 </script>
